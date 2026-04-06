@@ -516,10 +516,18 @@ kubectl port-forward svc/hello-app-qa -n qa 8081:80
 
 ---
 
-## 11. Pour aller plus loin (optionnel)
+## 11 . Tool-Tip
+
+Pour redémarrer tous les pods d'un déploiement pour forcer l'utilisation d'une nouvelle image
+
+kubectl rollout restart deployment hello-app -n dev
+
+## 12. Pour aller plus loin (optionnel)
 
 Si tu as terminé en avance, tu peux :
 
 - Ajouter une étape **tests** dans le CICD qui vérifier le code.
 
 ---
+
+
