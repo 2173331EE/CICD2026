@@ -1,5 +1,5 @@
 
-# Laboratoire CI/CD – GitHub Actions + Docker Hub + k3s
+# Laboratoire CI/CD – GitHub + Docker Hub + k3s
 
 > **Objectif du labo**  
 Mettre en place un pipeline CI/CD complet qui :
