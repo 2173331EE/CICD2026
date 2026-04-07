@@ -81,13 +81,14 @@ Récupérer :
 Créer un fichier `kubeconfig.yaml` :
 
 ```yaml
+
 apiVersion: v1
 kind: Config
 
 clusters:
 - name: k3s-cluster
   cluster:
-    server: https://<IP_DU_CONTROL_PLANE>:6443 #pour le moment mettre 192.168.21.100 qui est l'adresse du control-plan
+    server: https://192.168.21.100:6443 # est l'adresse du control-plane
     certificate-authority-data: <CA_BASE64>
 
 users:
@@ -103,27 +104,6 @@ contexts:
     namespace: dev
 
 current-context: etudiant-context
+
 ```
 
-Ce fichier sera **identique pour tous les étudiants** et peut être utilisé dans GitHub Actions (`KUBECONFIG_CONTENT`).
-
----
-
-<!--  # 7️. Test du kubeconfig
-
-```bash
-export KUBECONFIG=./kubeconfig.yaml
-kubectl get pods -n dev
-```  
-
-Si la commande fonctionne, le kubeconfig est valide.
--->
-
-# PS. Il y aura un problème connection réseau entre votre cluster et Github. Voici les 2 options que j'envisage pour le moment. Hésitez pas à me faire des suggestions.
-
-✔ Option A — Installer un Self‑Hosted Runner dans le réseau interne
-
-✔ Option B — Installer OpenVPN (ou WireGuard)
-- Les étudiants + GitHub Actions se connectent au réseau interne
-- Le kubeconfig fonctionne
--  Le pipeline CD fonctionne
