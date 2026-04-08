@@ -63,7 +63,6 @@ Avant de commencer, tu dois avoir :
 - Un **compte GitHub**.
 - Un **compte Docker Hub**.
 - L’accès à la **VM control-plane** du cluster k3s (avec VS Code).
-- Un **kubeconfig** fourni par ton enseignant (sous forme de texte) qui permet au pipeline de déployer sur le cluster.
 - Avoir lu : [Voir la documentation sur Git](Git.md)
 
 ---
@@ -103,8 +102,7 @@ git clone https://github.com/<TON_USERNAME>/cicd2026.git
 cd cicd2026
 ```
 
-### 3.5. Créer la branche dev et qa à partir de la branche main
-
+### 3.5. Créer la branche dev et qa à partir de la branche main (Prennez le temps de lire le script et copier ce script dans le terminal de votre Vs Code)
 ```
 # ------------------------------------------------------------
 # Étape 1 : Se placer sur la branche main
@@ -141,6 +139,7 @@ git checkout dev
 
 ### 3.6. Création du kubeconfig afin de permette une communication sécurisé entre notre cluster et gitHub. 
 - voir : [Voir la documentation kubeconfig](kubeconfig.md)
+- Mettre ce fichier dans le répertoire K8S de votre projet. 
 
 
 
