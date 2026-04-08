@@ -73,6 +73,7 @@ Avant de commencer, tu dois avoir :
    ````
    sudo apt install git
    sudo apt install npm
+   sudo apt install docker.io
    cd /home/etudiant/Documents/project
    code
    ````
