@@ -15,6 +15,7 @@ Ce document t’explique simplement :
 # Étape de préconfif config
 
 git config --global user.name "Danny Brabant"
+<br>
 git config --global user.email "danny.brabant@cegepmontpetit.ca"
 
 # 🧩 1. Branches locales (sur ton ordinateur)
