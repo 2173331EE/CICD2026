@@ -1,0 +1,255 @@
+body {
+    margin: 0;
+    background: #d8d8d8;
+    font-family: Tahoma, 'MS Sans Serif', sans-serif;
+  }
+
+  .screen {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.08);
+    z-index: 20;
+  }
+
+  .class-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(700px, calc(100vw - 2rem));
+    background: #ececec;
+    border: 1px solid #a0a0a0;
+    box-shadow: 0 0 0 1px #f5f5f5 inset;
+    padding: 0.7rem;
+    z-index: 30;
+  }
+
+  .class-title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #c7c7c7;
+    padding: 0.35rem 0.5rem;
+    background: linear-gradient(180deg, #f7f7f7 0%, #e5e5e5 100%);
+  }
+
+  .class-title-bar h2 {
+    margin: 0;
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+
+  .dialog-close {
+    min-width: 2.1rem;
+    height: 2rem;
+    padding: 0;
+    font-size: 1.1rem;
+  }
+
+  .class-table-wrap {
+    margin-top: 0.65rem;
+    border: 1px solid #c4c4c4;
+    background: #f3f3f3;
+    max-height: 310px;
+    overflow: auto;
+  }
+
+  .class-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.9rem;
+  }
+
+  .class-table th,
+  .class-table td {
+    border: 1px solid #c4c4c4;
+    text-align: left;
+    padding: 0.4rem 0.55rem;
+  }
+
+  .class-table tbody tr {
+    cursor: pointer;
+  }
+
+  .class-table tbody tr:hover {
+    background: #ebebeb;
+  }
+
+  .class-table tbody tr.selected-row {
+    background: #d9e6f8;
+  }
+
+  .class-table th {
+    background: #efefef;
+    font-weight: 700;
+  }
+
+  .message-box {
+    margin-top: 0.65rem;
+    border: 1px dashed #c7c7c7;
+    padding: 0.45rem 0.55rem;
+    color: #4e4e4e;
+    font-size: 1.7rem;
+    min-height: 2rem;
+    background: #f8f8f8;
+  }
+
+  .class-actions {
+    margin-top: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8rem;
+  }
+
+  .class-left-actions,
+  .class-right-actions {
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  .class-window button {
+    min-width: 5.2rem;
+    height: 2.5rem;
+    font-size: 1.45rem;
+  }
+
+  .window {
+    width: min(820px, 100%);
+    background: #ececec;
+    border: 1px solid #a0a0a0;
+    box-shadow: 0 0 0 1px #f5f5f5 inset;
+    padding: 0.5rem;
+  }
+
+  .title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #c7c7c7;
+    padding: 0.4rem 0.6rem;
+    background: linear-gradient(180deg, #f7f7f7 0%, #e5e5e5 100%);
+  }
+
+  h1 {
+    font-size: 1.7rem;
+    line-height: 1;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .window-controls {
+    display: flex;
+    gap: 0.3rem;
+  }
+
+  .control {
+    display: inline-grid;
+    place-items: center;
+    width: 1.9rem;
+    height: 1.7rem;
+    border: 1px solid #b6b6b6;
+    background: #efefef;
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .content {
+    margin-top: 0.5rem;
+    height: min(52vh, 470px);
+    background: #f3f3f3;
+    border: 1px solid #cfcfcf;
+  }
+
+  .actions {
+    margin-top: 0.55rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .left-actions {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  button {
+    min-width: 5.6rem;
+    height: 2.8rem;
+    border: 1px solid #b0b0b0;
+    background: #f5f5f5;
+    font-size: 1.5rem;
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  button:active {
+    transform: translateY(1px);
+  }
+
+  @media (max-width: 740px) {
+    h1 {
+      font-size: 1.3rem;
+    }
+
+    button {
+      font-size: 1.1rem;
+      height: 2.4rem;
+      min-width: 4.7rem;
+    }
+
+    .actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .left-actions {
+      justify-content: space-between;
+    }
+
+    .content {
+      height: 45vh;
+    }
+
+    .class-window {
+      width: calc(100vw - 1rem);
+      padding: 0.5rem;
+    }
+
+    .class-title-bar h2 {
+      font-size: 1.35rem;
+    }
+
+    .class-table {
+      font-size: 1rem;
+    }
+
+    .message-box {
+      font-size: 1rem;
+    }
+
+    .class-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .class-left-actions,
+    .class-right-actions {
+      justify-content: space-between;
+    }
+
+    .class-window button {
+      min-width: 4.7rem;
+      height: 2.2rem;
+      font-size: 1rem;
+    }
+  }
