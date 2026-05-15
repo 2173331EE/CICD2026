@@ -148,7 +148,7 @@ jobs:
           context: .
           file: Dockerfile.backend
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/poc-backend:${{ steps.vars.outputs.TAG }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/poc-backend:${{ github.ref_name }}
 
       - name: Build and push POC frontend image
         uses: docker/build-push-action@v5
@@ -156,11 +156,17 @@ jobs:
           context: .
           file: Dockerfile.frontend
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/poc-frontend:${{ steps.vars.outputs.TAG }}
-
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/poc-frontend:${{ github.ref_name }}
+          
       - name: Update POC image tags in manifests
         run: |
-          TAG=${{ steps.vars.outputs.TAG }}
+          if [ "${GITHUB_REF_NAME}" = "dev" ]; then
+            TAG=dev
+          elif [ "${GITHUB_REF_NAME}" = "qa" ]; then
+            TAG=qa
+          else
+            TAG=prod
+          fi
           USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
           sed -i "s|DOCKER_HUB_USERNAME/poc-backend:dev|${USERNAME}/poc-backend:${TAG}|g" \
             k8s/poc-backend.yaml
@@ -169,7 +175,13 @@ jobs:
 
       - name: Deploy POC to k3s
         run: |
-          NS=${{ steps.vars.outputs.NAMESPACE }}
+          if [ "${GITHUB_REF_NAME}" = "dev" ]; then
+            NS=dev
+          elif [ "${GITHUB_REF_NAME}" = "qa" ]; then
+            NS=qa
+          else
+            NS=prod
+          fi
           kubectl apply -f k8s/poc-dynamodb.yaml -n ${NS}
           kubectl apply -f k8s/poc-backend.yaml  -n ${NS}
           kubectl apply -f k8s/poc-frontend.yaml -n ${NS}
