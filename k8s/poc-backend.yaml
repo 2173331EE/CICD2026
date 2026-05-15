@@ -15,6 +15,7 @@ spec:
       containers:
         - name: poc-backend
           image: DOCKER_HUB_USERNAME/poc-backend:dev
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:
