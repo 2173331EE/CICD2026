@@ -15,6 +15,7 @@ spec:
       containers:
         - name: poc-frontend
           image: DOCKER_HUB_USERNAME/poc-frontend:dev
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
 ---

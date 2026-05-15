@@ -85,7 +85,7 @@
 <main class="screen">
   <section class="window" aria-label="Yacht Racing Results">
     <header class="title-bar">
-      <h1>Yacht Racing Results</h1>
+      <h1>Yacht Racing Results + changement Dan</h1>
       <div class="window-controls" aria-hidden="true">
         <span class="control">&#9633;</span>
         <span class="control">&#10005;</span>
