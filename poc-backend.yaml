@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: poc-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: poc-backend
+  template:
+    metadata:
+      labels:
+        app: poc-backend
+    spec:
+      containers:
+        - name: poc-backend
+          image: DOCKER_HUB_USERNAME/poc-backend:dev
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DYNAMODB_ENABLED
+              value: "true"
+            - name: DYNAMODB_ENDPOINT
+              value: "http://dynamodb-local:8000"
+            - name: DYNAMODB_TABLE
+              value: "boat_classes"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: poc-backend
+spec:
+  selector:
+    app: poc-backend
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: ClusterIP

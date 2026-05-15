@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: poc-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: poc-frontend
+  template:
+    metadata:
+      labels:
+        app: poc-frontend
+    spec:
+      containers:
+        - name: poc-frontend
+          image: DOCKER_HUB_USERNAME/poc-frontend:dev
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: poc-frontend
+spec:
+  selector:
+    app: poc-frontend
+  ports:
+    - port: 3000
+      targetPort: 3000
+  type: ClusterIP
