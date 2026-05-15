@@ -139,3 +139,37 @@ jobs:
       - name: Verify rollout
         run: |
           kubectl rollout status deployment/hello-app -n ${{ steps.vars.outputs.K8S_ENV }}
+
+# --- POC Boat Classes ---
+
+      - name: Build and push POC backend image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile.backend
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/poc-backend:${{ steps.vars.outputs.TAG }}
+
+      - name: Build and push POC frontend image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile.frontend
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/poc-frontend:${{ steps.vars.outputs.TAG }}
+
+      - name: Update POC image tags in manifests
+        run: |
+          TAG=${{ steps.vars.outputs.TAG }}
+          USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
+          sed -i "s|DOCKER_HUB_USERNAME/poc-backend:dev|${USERNAME}/poc-backend:${TAG}|g" \
+            k8s/poc-backend.yaml
+          sed -i "s|DOCKER_HUB_USERNAME/poc-frontend:dev|${USERNAME}/poc-frontend:${TAG}|g" \
+            k8s/poc-frontend.yaml
+
+      - name: Deploy POC to k3s
+        run: |
+          NS=${{ steps.vars.outputs.NAMESPACE }}
+          kubectl apply -f k8s/poc-dynamodb.yaml -n ${NS}
+          kubectl apply -f k8s/poc-backend.yaml  -n ${NS}
+          kubectl apply -f k8s/poc-frontend.yaml -n ${NS}
